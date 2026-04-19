@@ -26,7 +26,7 @@ public class SchedulerEvent
     //Getters & Setter
     public String getEventDesc() { return eventDesc; }
 
-    public void setEventDesc(String descEvento) { this.eventDesc = descEvento; }
+    public void setEventDesc(String descEvent) { this.eventDesc = descEvent; }
 
     public String getFwdEmail() { return fwdEmail; }
 
@@ -34,7 +34,7 @@ public class SchedulerEvent
 
     public Date getDate() { return date; }
 
-    public void setDate(Date data) { this.date = data; }
+    public void setDate(Date dat) { this.date = dat; }
 
     public Frequency getFrequency() { return frequency; }
 
@@ -42,5 +42,5 @@ public class SchedulerEvent
 
     public boolean getAlarm() { return alarm; }
 
-    public void setAlarm(boolean alarme) { this.alarm = alarme; }
+    public void setAlarm(boolean alarm) { this.alarm = alarm; }
 }
