@@ -9,7 +9,7 @@ import com.eventmanager.core.Model;
 import com.eventmanager.core.View;
 
 @SuppressWarnings("serial")
-public class    EventListView extends JPanel implements View {
+public class EventListView extends JPanel implements View {
 
     //Atributos
     @SuppressWarnings("unused")

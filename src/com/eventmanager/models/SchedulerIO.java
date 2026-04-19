@@ -13,6 +13,8 @@ import java.util.Vector;
 import com.eventmanager.core.Model;
 import com.eventmanager.core.View;
 
+import javax.swing.table.DefaultTableModel;
+
 public class SchedulerIO implements Model {
     //Atributos
     private static final String DIRECTORY = ".";
@@ -89,5 +91,31 @@ public class SchedulerIO implements Model {
         }
 
         return response;
+    }
+
+    //REMOVE EVENTS
+
+    public void removeEvents(DefaultTableModel model){
+        try{
+            //Limpiar el archivo y reescribir solo los eventos que quedan
+            FileWriter fw = new FileWriter(FILE, false);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (int i = 0; i< model.getRowCount(); i++) {
+                String date      = (String) model.getValueAt(i, 1);
+                String desc      = (String) model.getValueAt(i, 2);
+                String frequency = (String) model.getValueAt(i, 3);
+                String email     = (String) model.getValueAt(i, 4);
+                String alarm     = (String) model.getValueAt(i, 5);
+
+                bw.write(date + "," + desc + "," + frequency + "," + email + "," + alarm);
+                bw.newLine();
+            }
+            bw.close();
+            notifyViews();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
     }
 }
