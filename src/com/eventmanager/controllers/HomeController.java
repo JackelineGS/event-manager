@@ -4,10 +4,7 @@ import java.awt.Component;
 import java.io.File;
 import javax.swing.JMenuItem;
 import com.eventmanager.core.Controller;
-import com.eventmanager.views.HomeView;
-import com.eventmanager.views.EventListView;
-import com.eventmanager.views.NewEventView;
-import com.eventmanager.views.RemoveEventView;
+import com.eventmanager.views.*;
 
 public class HomeController extends Controller
 {
@@ -16,6 +13,7 @@ public class HomeController extends Controller
     private EventListController eventListController;
     private NewEventController newEventController;
     private RemoveEventController removeEventController;
+    private SearchEventController searchEventController;
 
     //Metodos
     @Override
@@ -24,15 +22,18 @@ public class HomeController extends Controller
         eventListController = new EventListController();
         newEventController = new NewEventController(eventListController);
         removeEventController = new RemoveEventController();
+        searchEventController = new SearchEventController();
 
         eventListController.run();
         newEventController.run();
         removeEventController.run();
+        searchEventController.run();
 
         //Registro de las vistas
         addView("events",       eventListController.getView());
         addView("newEvent",     newEventController.getView());
         addView("removeEvent",  removeEventController.getView());
+        addView("searchEvent", searchEventController.getView());
 
         homeView = new HomeView(this, mainFrame);
         homeView.run();
@@ -56,4 +57,10 @@ public class HomeController extends Controller
         return removeEventController.getView();
     }
 
+    //SEARCH
+
+    public SearchEventView getSearchEventView()
+    {
+        return searchEventController.getView();
+    }
 }

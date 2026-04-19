@@ -16,7 +16,6 @@ public class RemoveEventController extends Controller {
     private JTable table;
 
 
-
     //Metodos
     @Override
     public void run()

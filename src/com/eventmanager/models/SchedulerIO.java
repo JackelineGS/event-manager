@@ -106,7 +106,7 @@ public class SchedulerIO implements Model {
                 String desc      = (String) model.getValueAt(i, 2);
                 String frequency = (String) model.getValueAt(i, 3);
                 String email     = (String) model.getValueAt(i, 4);
-                String alarm     = (String) model.getValueAt(i, 5);
+                String alarm     = model.getValueAt(i, 5).equals("ON") ? "1" : "0";
 
                 bw.write(date + "," + desc + "," + frequency + "," + email + "," + alarm);
                 bw.newLine();
@@ -117,5 +117,22 @@ public class SchedulerIO implements Model {
             ex.printStackTrace();
         }
 
+    }
+
+    //SEARCH EVENTS
+
+    public Vector<Vector<Object>> searchEvents(String keyword) throws Exception {
+        Vector<Vector<Object>> allEvents = getEvents(); // propaga la excepción
+        Vector<Vector<Object>> results = new Vector<>();
+
+        for (Vector<Object> row : allEvents) {
+            for (Object cell : row) {
+                if (cell.toString().toLowerCase().contains(keyword.toLowerCase())) {
+                    results.add(row);
+                    break;
+                }
+            }
+        }
+        return results;
     }
 }
